@@ -1,0 +1,70 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class CustomerIDManager {
+    private ArrayList<String> customerIDs;
+
+    public CustomerIDManager() {
+        customerIDs = new ArrayList<>();
+    }
+
+    public void addCustomerID(String id) {
+        customerIDs.add(id);
+        System.out.println("Customer ID added successfully.");
+    }
+
+    public void removeCustomerID(String id) {
+        if (customerIDs.remove(id)) {
+            System.out.println("Customer ID removed successfully.");
+        } else {
+            System.out.println("Customer ID not found.");
+        }
+    }
+
+    public void displayCustomerIDs() {
+        System.out.println("Customer IDs:");
+        for (String id : customerIDs) {
+            System.out.println(id);
+        }
+    }
+
+    public static void main(String[] args) {
+        CustomerIDManager manager = new CustomerIDManager();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\nCustomer ID Manager");
+            System.out.println("1. Add Customer ID");
+            System.out.println("2. Remove Customer ID");
+            System.out.println("3. Display Customer IDs");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); 
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Customer ID to add: ");
+                    String idToAdd = scanner.nextLine();
+                    manager.addCustomerID(idToAdd);
+                    break;
+                case 2:
+                    System.out.print("Enter Customer ID to remove: ");
+                    String idToRemove = scanner.nextLine();
+                    manager.removeCustomerID(idToRemove);
+                    break;
+                case 3:
+                    manager.displayCustomerIDs();
+                    break;
+                case 4:
+                    System.out.println("Exiting the program.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 4);
+
+        scanner.close();
+    }
+}
